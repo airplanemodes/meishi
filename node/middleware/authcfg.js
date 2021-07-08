@@ -1,0 +1,3 @@
+exports.authconfig = {
+    jwtSecret:"VictoriaSecret"
+}
