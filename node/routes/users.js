@@ -1,8 +1,8 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
-const {pick} = require('lodash');
-const {authToken} = require('../middleware/auth');
-const {validUser, validLogin, UserModel, passToken} = require('../models/usermdl');
+const { pick } = require('lodash');
+const { authToken } = require('../middleware/auth');
+const { validUser, validLogin, UserModel, passToken, validFavorites } = require('../models/usermdl');
 
 const router = express.Router();
 
@@ -17,20 +17,27 @@ router.get('/', async(req,res) => {
 /* Adding a new user */
 router.post('/', async(req,res) => {
     let validBody = validUser(req.body);
+    let uniqueUser = await UserModel.findOne({email:req.body.email});
 
     if (validBody.error) {
         return res.status(400).json(validBody.error.details);
+    }
+
+    if (uniqueUser) {
+        return res.status(400).json({error:"The user already registered."})
     }
 
     try {
         let user = new UserModel(req.body); // inserts modeled request to the variable
         user.password = await bcrypt.hash(user.password, 10); // encryption
         await user.save(); // writes into database
-        res.status(201).json(pick(user,["name", "email", "business","_id"])); // success record report
+        res.status(201).json(pick(user,["name", "email", "business","_id", "datecreated"])); // success record report
+
     } catch (error) {
         if (error.code == 11000) {
-            return res.status(400).json({error:"The user already logged in!"});
+            return res.status(400).json({error:"The user already logged in!", code: 11000});
         }
+
         console.log(error);
         res.status(400).json(error);
     }
@@ -69,7 +76,7 @@ router.post('/login', async(req,res) => {
 
 
 /* Getting info */
-router.get('/userinfo', authToken, async(req,res) => {
+router.get('/info', authToken, async(req,res) => {
     try {
         /* Query for user info by id that stored in token
            Also ignoring password output */
@@ -79,6 +86,24 @@ router.get('/userinfo', authToken, async(req,res) => {
     } catch (error) {
         console.log(error);
         res.status(401).json(error);
+    }
+});
+
+
+
+/* Update favorites */
+router.patch('/cards', authToken, async(req,res) => {
+    let validBody = validFavorites(req.body);
+    if (validBody.error) {
+        return res.status(400).json(validBody.error.details);
+    };
+
+    try {
+        let data = await UserModel.updateOne({_id:req.tokenData._id}, req.body);
+        res.json(data);
+    } catch (error) {
+        console.log(error);
+        res.status(400).json(error);
     }
 });
 

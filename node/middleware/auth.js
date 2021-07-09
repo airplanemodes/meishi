@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const {authconfig} = require('./authcfg');
+const { authconfig } = require('./authcfg');
 
 /* Authentication token */
 exports.authToken = (req,res,next) => {
@@ -9,7 +9,6 @@ exports.authToken = (req,res,next) => {
     }
 
     try {
-        // Verifying
         let decodeToken = jwt.verify(validToken, authconfig.jwtSecret);
         req.tokenData = decodeToken;
         next();

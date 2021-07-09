@@ -6,11 +6,80 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meishi API Documentation</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        @font-face { 
+            font-family: JetBrainsMono;
+            src: url('JetBrainsMono-Regular.ttf');
+        }
+
+        body {
+            background-color:rgb(240, 240, 240);
+            padding: 20px;
+            font-family: JetBrainsMono;
+        }
+    </style>
 </head>
 <body>
     <h1>Meishi API Docs</h1>
+
     <h3>Getting started</h3>
+    <hr>
+    <p>Making CRUD operations in the REST API environment.</p>
+
+    <br>
+    <br>
+    <br>
+
     <h3>GET Requests</h3>
+    <hr>
+
+    <h4><u>Getting user info</u></h4>
+    <ul>
+        <li>Take token from a login response.</li>
+        <li>GET request to <code>http://localhost:3500/users/info</code></li>
+        <li>Request body: none</li>
+        <li>Request headers: <code>"x-auth-token"</code> : <code>"token"</code></li>
+        <li>In case of success you will get response with the user information.</li>
+    </ul>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
     <h3>POST Requests</h3>
+    <hr>
+
+    <h4><u>Adding new user</u></h4>
+    <ul>
+        <li>POST request to <code>http://localhost:3500/users/</code></li>
+        <li>Request body: raw JSON</li>
+        <li><code><pre>
+{
+    "name":"root",
+    "email":"root@admin.com",
+    "password":"123456",
+    "business":true
+}</pre></code></li>
+        <li>In case of success you will get JSON response with unique id. <br>
+            The new account also will be stored at database.</li>
+    </ul>
+    <br>
+    <br>
+
+    <h4><u>Login</u></h4>
+    <ul>
+        <li>POST request to <code>http://localhost:3500/users/login/</code></li>
+        <li>Request body: raw JSON</li>
+        <li><code><pre>
+{
+    "email":"root@admin.com",
+    "password":"123456",
+}</pre></code></li>
+        <li>In case of success a new token will be generated and sended to you in server response.</li>
+        <li>Token duration is 10 hours. You can change it in <code>/node/models/usermdl.js</code> at the 'Token' section.</li>
+        <li>You can encode token at <code>jwt.io</code>, just copy it and paste in "Encoded" section on the jwt website.</li>
+    </ul>
 </body>
 </html>

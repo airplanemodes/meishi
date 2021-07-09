@@ -9,9 +9,12 @@ Website created during exploration and understanding of MERN stack (and COVID-19
 4. Run `npm start` both for client and node server.
 5. Open [http://localhost:3000](http://localhost:3000).
 
+## API Documentation
+Open [http://localhost:3500](http://localhost:3500) OR `./node/public/index.html`.
+
 ### Ports
-* Node server runs on `localhost:3600`.
-* React client runs on `localhost:3000`.
+* Node server runs on `localhost:3500`.
+* React client runs on `localhost:3000`.  
 Be sure these ports are free in your system.
 
 ### UI
@@ -20,7 +23,7 @@ Works responsively for desktops, tablets and mobile phones.
 
 ### Post scriptum
 _Written with `<3` at HackerU._  
-_Some inspiration has come from a japanese animation._
+_Some inspiration has come from a Japanese animation._
 
 
 

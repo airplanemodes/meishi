@@ -89,7 +89,7 @@ router.delete('/:deletecard', authToken, async(req,res) => {
 
 /* Getting all user cards info */
 
-router.get('/user/cards', authToken, async(req,res) => {
+router.get('/usercards', authToken, async(req,res) => {
     try {
         let perpage = (req.query.perpage) ? Number(req.query.perpage) : 5;
         let page = (req.query.page) ? Number(req.query.page) : 0;

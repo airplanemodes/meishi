@@ -11,7 +11,12 @@ const userSchema = new mongoose.Schema({
     name: String,
     email: String,
     password: String,
-    business: Boolean
+    business: Boolean,
+    datecreated: {
+        type: Date,
+        default: Date.now()
+    },
+    cards: Array
 });
 
 exports.UserModel = mongoose.model('users', userSchema);
@@ -34,7 +39,6 @@ exports.validUser = (dataBody) => {
 };
 
 
-
 exports.validLogin = (dataBody) => {
     let joiSchema = Joi.object({
         email:Joi.string().min(2).max(64).email().required(),
@@ -45,10 +49,19 @@ exports.validLogin = (dataBody) => {
 };
 
 
+exports.validFavorites = (dataBody) => {
+    let joiSchema = Joi.object({
+        cards:Joi.array().min(1).required()
+    });
+
+    return joiSchema.validate(dataBody);
+};
+
+
 
 /* Token */
 
 exports.passToken = (userID, biz) => {
-    let token = jwt.sign({_id:userID, business:biz}, authconfig.jwtSecret, {expiresIn:"60mins"});
+    let token = jwt.sign({_id:userID, business:biz}, authconfig.jwtSecret, {expiresIn:"10h"});
     return token;
 };
