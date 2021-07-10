@@ -61,7 +61,7 @@ exports.validFavorites = (dataBody) => {
 
 /* Token */
 
-exports.passToken = (userID, biz) => {
-    let token = jwt.sign({_id:userID, business:biz}, authconfig.jwtSecret, {expiresIn:"10h"});
+exports.passToken = (userid) => {
+    let token = jwt.sign({_id:userid}, authconfig.jwtSecret, {expiresIn:"10h"});
     return token;
 };

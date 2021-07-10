@@ -64,7 +64,7 @@ router.post('/login', async(req,res) => {
             return res.status(401).json("User or password are incorrect");
         }
         // Token creating
-        let newToken = passToken(user._id, user.business);
+        let newToken = passToken(user._id);
         res.json({token:newToken}); 
 
     } catch (error) {

@@ -12,12 +12,12 @@ Website created during exploration and understanding of MERN stack (and COVID-19
 ## API Documentation
 Open [http://localhost:3500](http://localhost:3500) OR `./node/public/index.html`.
 
-### Ports
+## Ports
 * Node server runs on `localhost:3500`.
 * React client runs on `localhost:3000`.  
 Be sure these ports are free in your system.
 
-### UI
+## UI
 UI document can be found at `./client/src/ui`.  
 Works responsively for desktops, tablets and mobile phones.
 

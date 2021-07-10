@@ -1,24 +1,37 @@
 import React from 'react';
 import PageHeader from './common/page-header';
-import {useForm} from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import '../css/signup.css';
+import { requestMethod, serverAddress } from '../services/api';
 
 
 function Signup(props) {
+  
+    /* Submit with Axios request to the server-side */
+    const onSubForm = async(formData) => { 
+        //console.log(formData);
+        try {
+          let url = serverAddress+"/users/";
+          let data = await requestMethod(url, "POST", formData);
+
+          if (data._id) {
+            // ...
+          }
+          
+        } catch (error) {
+          console.log(error);
+        }
+    };
+
+
 
     /* React Hook Form
     register - stores input into the hook by invoking register function
     handleSubmit - validates inputs before invoking the 'onSubForm' callback
     formState: {errors} - shows errors if validation fails */
 
-    let {register, handleSubmit, getValues, formState: {errors} } = useForm();
+    let { register, handleSubmit, getValues, formState: {errors} } = useForm();
 
-    // submit to the server-side
-    const onSubForm = (formData) => { 
-        console.log(formData);
-    };
-
-    // registers
     let emailRef = register("email", {
         required: true,
         pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i

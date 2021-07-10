@@ -14,8 +14,8 @@ const app = express();
 
 app.use(express.json()); // translates data into json
 app.use(express.static(path.join(__dirname, 'public'))); // sets local folder
+allowAccessControl(app); // resolve block by CORS policy, should to be before routing
 routes(app); // enables routing
-allowAccessControl(app);
 
 
 /* Server */
