@@ -24,20 +24,16 @@ router.post('/', async(req,res) => {
     }
 
     if (uniqueUser) {
-        return res.status(400).json({error:"The user already registered."})
+        return res.status(400).json({error:"The email already in use.", code: 12000});
     }
 
     try {
         let user = new UserModel(req.body); // inserts modeled request to the variable
-        user.password = await bcrypt.hash(user.password, 10); // encryption
+        user.password = await bcrypt.hash(user.password, 10); // password encryption
         await user.save(); // writes into database
         res.status(201).json(pick(user,["name", "email", "business","_id", "datecreated"])); // success record report
 
     } catch (error) {
-        if (error.code == 11000) {
-            return res.status(400).json({error:"The user already logged in!", code: 11000});
-        }
-
         console.log(error);
         res.status(400).json(error);
     }
