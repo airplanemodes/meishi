@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-
+/* Change the server address here if needed */
 export const serverAddress = "http://localhost:3500";
 
 
@@ -19,7 +19,7 @@ export const getRequest = async(url) => {
 
 
 
-/* Axios request */
+/* Axios detailed request */
 export const requestMethod = async(url, method, data) => {
     try {
         let resp = await axios({
@@ -28,7 +28,7 @@ export const requestMethod = async(url, method, data) => {
             data:data,
             headers:{
                 'content-type':'application/json',
-                'x-auth-token':localStorage['localToken']
+                'x-auth-token':localStorage['localToken'] // gets token from the browser
             }
         })   
         

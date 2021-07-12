@@ -12,7 +12,7 @@ function Signup(props) {
     /* React Hook Form
     register - stores input into the hook by invoking register function
                names must fit the Mongoose schema keys!
-    handleSubmit - validates inputs before invoking the 'onSubForm' callback
+    handleSubmit - validates inputs according to registers before invoking the 'onSubForm' callback
     formState: {errors} - shows errors if validation fails */
 
     let { register, handleSubmit, formState: {errors} } = useForm();
@@ -31,8 +31,10 @@ function Signup(props) {
     /* useHistory hook assigning to the variable */
     let history = useHistory();
 
+
     /* notistack */
-    const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+    const { enqueueSnackbar } = useSnackbar();
+
 
     /* Submit with Axios request to the server-side */
     const onSubForm = async(formData) => { 
@@ -51,6 +53,8 @@ function Signup(props) {
       }
     };    
 
+
+
     return (
         <div className="container ubuntu">
           <div className="text-center pt-4 mb-3">
@@ -60,16 +64,16 @@ function Signup(props) {
             <div>
             <div>
               <label>Full name:</label>
-              <input {...nameRef} type="text" className="form-control" />
+              <input {...nameRef} type="text" autoComplete="off" className="form-control" />
               {errors.name && <span className="text-danger"><small>Name must be at least 2 chars</small></span>}
             </div>
               <label>Email:</label>
-              <input {...emailRef} type="email" className="form-control" />
+              <input {...emailRef} type="email" autoComplete="off" className="form-control" />
               {errors.email && <span className="text-danger"><small>Enter valid e-mail address</small></span>}
             </div>
             <div>
               <label>Password:</label>
-              <input {...passwordRef} type="password" className="form-control" />
+              <input {...passwordRef} type="password" autoComplete="off" className="form-control" />
               {errors.password && <span className="text-danger"><small>Password must be at least 6 chars</small></span>}
             </div>
             {/* <div>

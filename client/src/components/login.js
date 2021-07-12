@@ -1,6 +1,8 @@
 import React from 'react';
 import PageHeader from './common/page-header';
 import { useForm } from 'react-hook-form';
+import { useHistory } from 'react-router-dom';
+import { useSnackbar } from 'notistack';
 import { requestMethod, serverAddress } from '../services/api';
 import '../css/login.css';
 
@@ -13,10 +15,12 @@ function Login(props) {
       //console.log(formData);
       try {
         let url = serverAddress+"/users/login/";
-        let data = await requestMethod(url, "POST", formData);
+        let data = await requestMethod(url, "POST", formData); // Axios request
         console.log(data); // token is here
-        localStorage.setItem('tok', data.token); // saving token on the client-side (in the browser)
-        
+        localStorage.setItem('localToken', data.token); // saving token on the client-side (in the browser)
+        enqueueSnackbar('Success!', {variant: 'success'}); // show success message
+        history.push("/userinfo"); // redirect to userinfo
+
       } catch (error) {
         console.log(error);
       }
@@ -36,6 +40,15 @@ function Login(props) {
 
 
 
+    /* useHistory hook assigning to the variable */
+    let history = useHistory();
+
+
+    /* notistack */
+    const { enqueueSnackbar } = useSnackbar();
+
+
+
     return (
         <div className="container ubuntu">
           <div className="text-center pt-4 mb-3">
@@ -44,12 +57,12 @@ function Login(props) {
           <form onSubmit={handleSubmit(onSubForm)} className="col-lg-4 mx-auto border border-dark rounded shadow p-3">
             <div>
               <label>Email:</label>
-              <input {...emailRef} type="text" className="form-control" />
+              <input {...emailRef} type="text" autoComplete="off" className="form-control" />
               {errors.email && <span className="text-danger"><small>Enter valid e-mail address</small></span>}
             </div>
             <div>
               <label>Password:</label>
-              <input {...passwordRef} type="password" className="form-control" />
+              <input {...passwordRef} type="password" autoComplete="off" className="form-control" />
               {errors.password && <span className="text-danger"><small>Password must be at least 6 chars</small></span>}
             </div>
               <button className="btn text-white w-100 mt-3">Enter the system</button>
