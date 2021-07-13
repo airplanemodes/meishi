@@ -3,7 +3,7 @@ import PageHeader from './common/page-header';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
-import { requestMethod, serverAddress } from '../services/api';
+import { axiosRequest, serverAddress } from '../services/api';
 import '../css/login.css';
 
 
@@ -15,10 +15,10 @@ function Login(props) {
       //console.log(formData);
       try {
         let url = serverAddress+"/users/login/";
-        let data = await requestMethod(url, "POST", formData); // Axios request
+        let data = await axiosRequest(url, "POST", formData); // Axios request
         console.log(data); // token is here
         localStorage.setItem('localToken', data.token); // saving token on the client-side (in the browser)
-        enqueueSnackbar('Success!', {variant: 'success'}); // show success message
+        enqueueSnackbar('Welcome to the system', {variant: 'success'}); // show success message
         history.push("/userinfo"); // redirect to userinfo
 
       } catch (error) {

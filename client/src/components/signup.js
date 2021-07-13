@@ -3,7 +3,7 @@ import PageHeader from './common/page-header';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
-import { requestMethod, serverAddress } from '../services/api';
+import { axiosRequest, serverAddress } from '../services/api';
 import '../css/signup.css';
 
 
@@ -41,7 +41,7 @@ function Signup(props) {
       //console.log(formData);
       try {
         let url = serverAddress+"/users/";
-        let data = await requestMethod(url, "POST", formData);
+        let data = await axiosRequest(url, "POST", formData);
 
         if (data._id) {
           enqueueSnackbar('Success!', {variant: 'success'});

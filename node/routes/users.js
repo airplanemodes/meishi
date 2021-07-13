@@ -105,4 +105,11 @@ router.patch('/cards', authToken, async(req,res) => {
 
 
 
+/* Token check route that not goes through the database*/
+router.get('/token', authToken, (req,res) => {
+    res.json({status:"Token OK"});
+});
+
+
+
 module.exports = router;

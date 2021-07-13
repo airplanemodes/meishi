@@ -20,7 +20,7 @@ export const getRequest = async(url) => {
 
 
 /* Axios detailed request */
-export const requestMethod = async(url, method, data) => {
+export const axiosRequest = async(url, method, data) => {
     try {
         let resp = await axios({
             url:url,
