@@ -29,7 +29,8 @@ exports.validCard = (dataBody) => {
         bsnDescription:Joi.string().min(2).max(512).required(),
         bsnAddress:Joi.string().min(2).max(256).required(),
         bsnPhone:Joi.string().min(2).max(32).required(),
-        bsnImageUrl:Joi.string().min(2).max(512)
+        // 'allow' makes possible to send nothing or an empty string
+        bsnImageUrl:Joi.string().max(512).allow(null, '')
     });
 
     return joiSchema.validate(dataBody);

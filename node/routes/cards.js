@@ -31,7 +31,7 @@ router.post('/', authToken, checkIfBusinessAccount, async(req,res) => {
 
 /* Getting all cards info */
 
-router.get('/', authToken, async(req,res) => {
+router.get('/', async(req,res) => {
     try {
         let perpage = (req.query.perpage) ? Number(req.query.perpage) : 5;
         let page = (req.query.page) ? Number(req.query.page) : 0;

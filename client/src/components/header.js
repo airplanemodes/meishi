@@ -40,6 +40,7 @@ function Header(props) {
               </React.Fragment>
               :
               <React.Fragment>
+              <Link to="/userinfo">User info</Link>
               <Link to="/favorites">Favorites</Link>
               <Link onClick={logOut} to="/login">Logout</Link>
               </React.Fragment>

@@ -1,5 +1,7 @@
 import { axiosRequest, serverAddress } from "./api";
 
+
+
 export const checkIfUserLogged = async() => {
     if (!localStorage['localToken']) {
         return {error:"There is no token"};
@@ -7,8 +9,8 @@ export const checkIfUserLogged = async() => {
 
     try {
         let url = serverAddress+"/users/token/";
-        let data = await axiosRequest(url, "GET");
-        return data;
+        let logindata = await axiosRequest(url, "GET");
+        return logindata;
         
     } catch (error) {
         console.log(error);

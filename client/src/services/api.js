@@ -4,7 +4,7 @@ import axios from 'axios';
 export const serverAddress = "http://localhost:3500";
 
 
-/* Axios GET request */
+/* Axios GET request without token */
 export const getRequest = async(url) => {
     try {
         let resp = await axios.get(url);

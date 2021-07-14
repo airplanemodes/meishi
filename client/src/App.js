@@ -16,8 +16,17 @@ import Signup from './components/signup';
 import Login from './components/login';
 import Userinfo from './components/userinfo';
 import ProtectedRoute from './components/common/protected-route';
+import { useEffect } from 'react';
+import { checkUser } from './services/getinfo';
+
+
 
 function App() {
+
+  useEffect(() => {
+    checkUser();
+  },[]);
+  
   return (
     <SnackbarProvider maxSnack={1} anchorOrigin={{
       vertical: 'bottom',
