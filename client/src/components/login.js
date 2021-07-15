@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 import { axiosRequest, serverAddress } from '../services/api';
 import '../css/login.css';
+import { updateUserData } from '../services/authentic';
 
 
 
@@ -16,8 +17,9 @@ function Login(props) {
       try {
         let url = serverAddress+"/users/login/";
         let data = await axiosRequest(url, "POST", formData); // Axios request
-        console.log(data); // token is here
+        //console.log(data); // token is here
         localStorage.setItem('localToken', data.token); // saving token on the client-side (in the browser)
+        await updateUserData(); // for a user data object
         enqueueSnackbar('Welcome to the system', {variant: 'success'}); // show success message
         history.push("/userinfo"); // redirect to userinfo
 
@@ -36,7 +38,7 @@ function Login(props) {
         pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
     });
 
-    let passwordRef = register("password", {required: true, minLength: 6});
+    let passwordRef = register("password", {required: true});
 
 
 
@@ -63,7 +65,7 @@ function Login(props) {
             <div>
               <label>Password:</label>
               <input {...passwordRef} type="password" autoComplete="off" className="form-control" />
-              {errors.password && <span className="text-danger"><small>Password must be at least 6 chars</small></span>}
+              {errors.password && <span className="text-danger"><small>Password is required</small></span>}
             </div>
               <button className="btn text-white w-100 mt-3">Enter the system</button>
             </form>

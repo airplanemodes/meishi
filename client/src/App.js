@@ -1,9 +1,11 @@
 import './App.css';
 
-/* Modules */
+/* Modules, Hooks and Functions */
+import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Grow from '@material-ui/core/Grow';
 import { SnackbarProvider } from 'notistack';
+import { updateUserData } from './services/authentic';
 
 
 /* Components */
@@ -16,16 +18,21 @@ import Signup from './components/signup';
 import Login from './components/login';
 import Userinfo from './components/userinfo';
 import ProtectedRoute from './components/common/protected-route';
-import { useEffect } from 'react';
-import { checkUser } from './services/getinfo';
 
 
 
 function App() {
 
+  let [user,setUser] = useState(null);
+
   useEffect(() => {
-    checkUser();
+    ifUserLogged();
   },[]);
+
+  const ifUserLogged = async() => {
+    let userdata = await updateUserData();
+    setUser(userdata);
+  };
   
   return (
     <SnackbarProvider maxSnack={1} anchorOrigin={{

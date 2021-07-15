@@ -1,26 +1,42 @@
 import React from 'react';
 import { Route, useHistory } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
-import { checkIfUserLogged } from '../../services/authentic'
+import { axiosRequest, serverAddress } from '../../services/api';
 
 function ProtectedRoute(props) {
-    
     let history = useHistory();
     const { enqueueSnackbar } = useSnackbar();
 
-    const checkTokenUser = async() => {
-        let tokendata = await checkIfUserLogged();
+    const protectedValidOne = async() => {
+        if (!localStorage['localToken']) {
+            return {error:"There is no token"};
+        }
+    
+        try {
+            let url = serverAddress+"/users/token/";
+            let logindata = await axiosRequest(url, "GET");
+            return logindata;
+            
+        } catch (error) {
+            console.log(error);
+            throw error;
+        }
+    };
 
-        if (!tokendata.status) {
+
+    const protectedValidTwo = async() => {
+        let checkdata = await protectedValidOne();
+        if (!checkdata.status) {
             enqueueSnackbar('You should login first!', {variant: 'warning'});
             localStorage.removeItem("localToken");
             history.push('/login');
         }
-    }
+    };
+
 
     return (
         <Route exact path={props.path} render={() => {
-            checkTokenUser();
+            protectedValidTwo();
             return (<props.comp/>);
         }}/>
     );

@@ -18,8 +18,6 @@ function Main(props) {
         setCardsArray(data);
     };
 
-
-
     return (
         <main className="container ubuntu pt-4">
             <PageHeader title="Cards"/>

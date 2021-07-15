@@ -1,7 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import '../css/card.css';
+import { returnUserData } from '../services/authentic';
 
 function Cardlist(props) {
+
+    let [userData, setUserData] = useState();
+
+    useEffect(() => {
+        setUserData(returnUserData());
+    },[]);
+
     return (
       <div className="row">
         {props.prop.map(item => {

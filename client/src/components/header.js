@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 import '../css/header.css';
+import { updateUserData } from '../services/authentic';
 
 function Header(props) {
   
@@ -13,9 +14,10 @@ function Header(props) {
     setShowMobileNav(false);
   };
 
-  const logOut = () => {
+  const logOut = async() => {
     enqueueSnackbar('You logged out from the system', {variant: 'info'});
     localStorage.removeItem('localToken');
+    await updateUserData();
   };
 
     return (
