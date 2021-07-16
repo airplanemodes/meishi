@@ -18,7 +18,7 @@ Open [http://localhost:3500](http://localhost:3500) OR `./node/public/index.html
 Be sure these ports are free in your system.
 
 ## UI
-UI document can be found at `./client/src/ui`.  
+UI documents can be found at `./client/src/ui`.  
 Works responsively for desktops, tablets and mobile phones.
 
 ### Post scriptum

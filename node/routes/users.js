@@ -23,6 +23,7 @@ router.post('/', async(req,res) => {
         return res.status(400).json(validBody.error.details);
     }
 
+    // This check is not necessary if the unique MongoDB index for an e-mail was created
     if (uniqueUser) {
         return res.status(400).json({error:"The email already in use.", code: 12000});
     }

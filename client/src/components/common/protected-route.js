@@ -8,7 +8,8 @@ function ProtectedRoute(props) {
     const { enqueueSnackbar } = useSnackbar();
 
     const protectedValidOne = async() => {
-        if (!localStorage['localToken']) {
+        // Dot notation
+        if (!localStorage.localToken) {
             return {error:"There is no token"};
         }
     

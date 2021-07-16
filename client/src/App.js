@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Grow from '@material-ui/core/Grow';
 import { SnackbarProvider } from 'notistack';
-import { updateUserData } from './services/authentic';
+import { updateUserData } from './services/userdata';
 
 
 /* Components */
@@ -35,13 +35,14 @@ function App() {
   };
   
   return (
-    <SnackbarProvider maxSnack={1} anchorOrigin={{
+    <SnackbarProvider maxSnack={3} anchorOrigin={{
       vertical: 'bottom',
       horizontal: 'right'
     }} TransitionComponent={Grow}>
       <Router>
         {/* For props use and rerender on url changes */}
         <Route path="/" component={Header}/>
+        { user &&
           <Switch>
             <Route exact path="/" component={Main}/>
             <Route exact path="/signup" component={Signup}/>
@@ -50,8 +51,9 @@ function App() {
             {/* All pages that need authentication are here */}
             <ProtectedRoute path="/userinfo" comp={Userinfo}/>
             {/* 404 comes last */}
-            <Route path="/" component={Page404}/>  
+            <Route path="/" component={Page404}/>
           </Switch>
+        }
         <Footer/>
       </Router>
     </SnackbarProvider>

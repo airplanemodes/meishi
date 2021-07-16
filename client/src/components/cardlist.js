@@ -1,14 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import '../css/card.css';
-import { returnUserData } from '../services/authentic';
+import { addFavoriteCard, returnUserData } from '../services/userdata';
+import { useSnackbar } from 'notistack';
+
 
 function Cardlist(props) {
 
     let [userData, setUserData] = useState();
+    const { enqueueSnackbar } = useSnackbar();
+
 
     useEffect(() => {
         setUserData(returnUserData());
     },[]);
+
+
+    const showBtnFav = (item) => {
+      return (
+        <button className="btn btn-sm btn-dark ms-2" onClick={async() => {
+          await addFavoriteCard(item.bsnNumber);
+          enqueueSnackbar('Added to favorites!', {variant: 'success'});
+        }}>
+          <span class="iconify" data-icon="mdi:heart" data-inline="false"></span>
+        </button>
+      )
+    };
+
 
     return (
       <div className="row">
@@ -21,21 +38,15 @@ function Cardlist(props) {
                 <h3 className="text-white text-center p-1" style={{backgroundColor:"#333"}}>{item.bsnName}</h3>
                 <div className="meishiImage" style={{backgroundImage:`url(${bg})`}}></div>
                 <div className="small mt-1 text-center" style={{backgroundColor:"#333", color:"#c7c7c7"}}>{item.bsnDescription}</div>
-                <div className="small mt-1 text-center text-white" style={{backgroundColor:"#333"}}><span className="iconify" data-icon="mdi:phone" data-inline="false"></span> {item.bsnPhone} - {item.bsnAddress}</div>            
+                <div className="small mt-1 text-center text-white" style={{backgroundColor:"#333"}}>
+                  <span className="iconify" data-icon="mdi:phone" data-inline="false"></span> {item.bsnPhone} - {item.bsnAddress}
+                  { userData._id && showBtnFav(item) }
+                </div>            
               </article>
             </div>
           )
         })}
       </div>
-
-        // <div className="card" style={{width: "18rem"}}>
-        //   <img className="card-img-top" src="..." alt="Card image cap"/>
-        //   <div className="card-body">
-        //     <h5 className="card-title">Card title</h5>
-        //     <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        //     <a href="#" className="btn btn-primary">Go somewhere</a>
-        //   </div>
-        // </div>
     );
 };
 
