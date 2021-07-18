@@ -23,19 +23,28 @@ import ProtectedRoute from './components/common/protected-route';
 
 function App() {
 
+  /* It's important to be updated with the latest version
+  of user data that stored at 'user' object and for this purpose
+  these hooks works already in the main 'App.js' component */
+  
+  // creates state
   let [user,setUser] = useState(null);
 
   useEffect(() => {
+    // invokes the set function
     ifUserLogged();
   },[]);
 
+
   const ifUserLogged = async() => {
+    // calls for the service function and updates the state with response data
     let userdata = await updateUserData();
     setUser(userdata);
   };
+
   
   return (
-    <SnackbarProvider maxSnack={3} anchorOrigin={{
+    <SnackbarProvider maxSnack={1} anchorOrigin={{
       vertical: 'bottom',
       horizontal: 'right'
     }} TransitionComponent={Grow}>

@@ -1,7 +1,4 @@
-/* Node.js + Express.js + MongoDB
-
-    Modules used:
-Express, Mongoose, Joi, Bcrypt, Lodash, jsonwebtoken */
+/* Node.js + Express.js + MongoDB */
 
 
 const express = require('express');

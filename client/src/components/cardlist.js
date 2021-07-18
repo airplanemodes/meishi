@@ -9,21 +9,31 @@ function Cardlist(props) {
     let [userData, setUserData] = useState();
     const { enqueueSnackbar } = useSnackbar();
 
-
     useEffect(() => {
         setUserData(returnUserData());
     },[]);
 
 
     const showBtnFav = (item) => {
-      return (
-        <button className="btn btn-sm btn-dark ms-2" onClick={async() => {
-          await addFavoriteCard(item.bsnNumber);
-          enqueueSnackbar('Added to favorites!', {variant: 'success'});
-        }}>
-          <span class="iconify" data-icon="mdi:heart" data-inline="false"></span>
-        </button>
-      )
+      if (!userData.cards.includes(item.bsnNumber)) {
+        return (
+          <button className="btn btn-sm btn-dark ms-2" onClick={async() => {
+            await addFavoriteCard(item.bsnNumber);
+            enqueueSnackbar('Added to favorites!', {variant: 'success'});
+          }}>
+            <span class="iconify" data-icon="mdi:heart" data-inline="false"></span>
+          </button>
+        ) 
+      } else {
+        return (
+          <button className="btn btn-sm btn-dark ms-2" onClick={async() => {
+            console.log("Remove from favorites");
+            enqueueSnackbar('Removed from favorites.', {variant: 'info'});
+          }}>
+            <span class="iconify" data-icon="mdi:heart-remove" data-inline="false"></span>
+          </button>
+        )
+      }
     };
 
 

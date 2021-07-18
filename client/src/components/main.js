@@ -11,6 +11,7 @@ function Main(props) {
         cardsGetAndSet();
     },[]);
     
+    // Getting all cards data, opened to all users
     const cardsGetAndSet = async() => {
         let url = serverAddress+"/cards/";
         let data = await getRequest(url);
