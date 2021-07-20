@@ -51,7 +51,7 @@ exports.validLogin = (dataBody) => {
 
 exports.validFavorites = (dataBody) => {
     let joiSchema = Joi.object({
-        cards:Joi.array().min(1).required()
+        cards:Joi.array().min(0).required()
     });
 
     return joiSchema.validate(dataBody);

@@ -47,7 +47,25 @@ export const addFavoriteCard = async(businessCardNum) => {
 
     try {
         let url = serverAddress+"/users/cards/";
-        let data = await axiosRequest(url, "PATCH",{cards:user.cards});
+        let data = await axiosRequest(url, "PATCH", {cards:user.cards});
+        return data;
+
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
+};
+
+
+export const removeFavoriteCard = async(businessCardNum) => {
+    /* Filter runs on user.cards array and returns each item,
+       excluding one with the bsnNumber that user want to remove */ 
+    let tempArr = user.cards.filter(item => item !== businessCardNum);
+    user.cards.splice(0, user.cards.length, ...tempArr);
+
+    try {
+        let url = serverAddress+"/users/cards/";
+        let data = await axiosRequest(url, "PATCH", {cards:user.cards});
         return data;
 
     } catch (error) {

@@ -18,6 +18,7 @@ import Signup from './components/signup';
 import Login from './components/login';
 import Userinfo from './components/userinfo';
 import ProtectedRoute from './components/common/protected-route';
+import Favorites from './components/favorites';
 
 
 
@@ -52,16 +53,19 @@ function App() {
         {/* For props use and rerender on url changes */}
         <Route path="/" component={Header}/>
         { user &&
-          <Switch>
+          <main style={{ minHeight: "78vh" }}>
+            <Switch>
             <Route exact path="/" component={Main}/>
             <Route exact path="/signup" component={Signup}/>
             <Route exact path="/login" component={Login}/>
             <Route exact path="/about" component={About}/>
             {/* All pages that need authentication are here */}
             <ProtectedRoute path="/userinfo" comp={Userinfo}/>
+            <ProtectedRoute path="/favorites" comp={Favorites}/>
             {/* 404 comes last */}
             <Route path="/" component={Page404}/>
-          </Switch>
+            </Switch>
+          </main>
         }
         <Footer/>
       </Router>

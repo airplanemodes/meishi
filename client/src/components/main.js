@@ -20,11 +20,11 @@ function Main(props) {
     };
 
     return (
-        <main className="container ubuntu pt-4">
+        <div className="container ubuntu pt-4">
             <PageHeader title="Cards"/>
-            <Cardlist prop={cardsArray}/>
-        </main> 
-    );
+            <Cardlist propy={cardsArray}/>
+        </div> 
+    )
 };
 
 export default Main;

@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import '../css/card.css';
-import { addFavoriteCard, returnUserData } from '../services/userdata';
+import { addFavoriteCard, removeFavoriteCard, returnUserData } from '../services/userdata';
 import { useSnackbar } from 'notistack';
 
 
 function Cardlist(props) {
 
     let [userData, setUserData] = useState();
+    let [update, forceUpdate] = useState(1);
+
     const { enqueueSnackbar } = useSnackbar();
 
     useEffect(() => {
@@ -18,19 +20,24 @@ function Cardlist(props) {
       if (!userData.cards.includes(item.bsnNumber)) {
         return (
           <button className="btn btn-sm btn-dark ms-2" onClick={async() => {
-            await addFavoriteCard(item.bsnNumber);
-            enqueueSnackbar('Added to favorites!', {variant: 'success'});
-          }}>
-            <span class="iconify" data-icon="mdi:heart" data-inline="false"></span>
+            let data = await addFavoriteCard(item.bsnNumber);
+            if (data.n === 1) {
+              enqueueSnackbar('Added to favorites!', {variant: 'success'});
+              // By default, when the component’s state or props change, the component will re-render.
+              forceUpdate(update + 1);
+            }
+          }}><i class="fa fa-plus" aria-hidden="true"></i>
           </button>
         ) 
       } else {
         return (
           <button className="btn btn-sm btn-dark ms-2" onClick={async() => {
-            console.log("Remove from favorites");
-            enqueueSnackbar('Removed from favorites.', {variant: 'info'});
-          }}>
-            <span class="iconify" data-icon="mdi:heart-remove" data-inline="false"></span>
+            let data = await removeFavoriteCard(item.bsnNumber);
+            if (data.n === 1) {
+              enqueueSnackbar('Removed from favorites.', {variant: 'info'});
+              forceUpdate(update - 1);
+            }
+          }}><i class="fa fa-remove" aria-hidden="true"></i>
           </button>
         )
       }
@@ -39,7 +46,7 @@ function Cardlist(props) {
 
     return (
       <div className="row">
-        {props.prop.map(item => {
+        {props.propy.map(item => {
           // ?. means optional property
           let bg = item.bsnImageUrl?.length > 2 ? item.bsnImageUrl : '/images/default.jpg'
           return (

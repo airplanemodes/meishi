@@ -29,7 +29,7 @@ router.post('/', authToken, checkIfBusinessAccount, async(req,res) => {
 
 
 
-/* Getting all cards info */
+/* All cards */
 
 router.get('/', async(req,res) => {
     try {
@@ -53,7 +53,21 @@ router.get('/', async(req,res) => {
 
 
 
-/* Getting all user cards info */
+/* Count total database cards collection */
+
+router.get('/total', async(req,res) => {
+    try {
+        let data = await CardModel.countDocuments({});
+        res.json({count:data});
+    } catch (error) {
+        console.log(error);
+        res.status(400).json(error);
+    }
+});
+
+
+
+/* Cards created by the user */
 
 router.get('/usercards', authToken, async(req,res) => {
     try {

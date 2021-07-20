@@ -3,6 +3,8 @@ const bcrypt = require('bcrypt');
 const { pick } = require('lodash');
 const { authToken } = require('../middleware/auth');
 const { validUser, validLogin, UserModel, passToken, validFavorites } = require('../models/usermdl');
+const { CardModel } = require('../models/cardmdl');
+
 
 const router = express.Router();
 
@@ -72,7 +74,7 @@ router.post('/login', async(req,res) => {
 
 
 
-/* Getting info */
+/* User info */
 router.get('/info', authToken, async(req,res) => {
     try {
         /* Query for user info by id that stored in token
@@ -80,6 +82,26 @@ router.get('/info', authToken, async(req,res) => {
         let data = await UserModel.findOne({_id:req.tokenData._id}, {password:0});
         res.json(data);
         
+    } catch (error) {
+        console.log(error);
+        res.status(401).json(error);
+    }
+});
+
+
+
+/* User favorites */
+router.get('/favcards', authToken, async(req,res) => {
+    try {
+        // Find user by id stored at token
+        let user = await UserModel.findOne({_id:req.tokenData._id});
+        // Get his cards array
+        let cardsArr = user.cards;
+        // Find all business numbers he liked
+        let data = await CardModel.find({bsnNumber: {$in:cardsArr}});
+        // Return the data
+        res.json(data);
+
     } catch (error) {
         console.log(error);
         res.status(401).json(error);
@@ -106,7 +128,7 @@ router.patch('/cards', authToken, async(req,res) => {
 
 
 
-/* Token check route that not goes through the database*/
+/* Token check not through the database */
 router.get('/token', authToken, (req,res) => {
     res.json({status:"Token OK"});
 });
