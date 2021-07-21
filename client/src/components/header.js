@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
-import '../css/header.css';
 import { updateUserData } from '../services/userdata';
 
 function Header(props) {

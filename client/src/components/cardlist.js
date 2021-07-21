@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import '../css/card.css';
 import { addFavoriteCard, removeFavoriteCard, returnUserData } from '../services/userdata';
 import { useSnackbar } from 'notistack';
 
@@ -26,7 +25,7 @@ function Cardlist(props) {
               // By default, when the component’s state or props change, the component will re-render.
               forceUpdate(update + 1);
             }
-          }}><i class="fa fa-plus" aria-hidden="true"></i>
+          }}><i className="fa fa-plus" aria-hidden="true"></i>
           </button>
         ) 
       } else {
@@ -37,7 +36,7 @@ function Cardlist(props) {
               enqueueSnackbar('Removed from favorites.', {variant: 'info'});
               forceUpdate(update - 1);
             }
-          }}><i class="fa fa-remove" aria-hidden="true"></i>
+          }}><i className="fa fa-remove" aria-hidden="true"></i>
           </button>
         )
       }
@@ -50,8 +49,8 @@ function Cardlist(props) {
           // ?. means optional property
           let bg = item.bsnImageUrl?.length > 2 ? item.bsnImageUrl : '/images/default.jpg'
           return (
-            <div className="col-lg-4 p-3">
-              <article className="border border-dark" style={{backgroundColor:"#222"}}>
+            <article key={item._id} className="col-lg-4 p-3">
+              <div className="border border-dark" style={{backgroundColor:"#222"}}>
                 <h3 className="text-white text-center p-1" style={{backgroundColor:"#333"}}>{item.bsnName}</h3>
                 <div className="meishiImage" style={{backgroundImage:`url(${bg})`}}></div>
                 <div className="small mt-1 text-center" style={{backgroundColor:"#333", color:"#c7c7c7"}}>{item.bsnDescription}</div>
@@ -59,8 +58,8 @@ function Cardlist(props) {
                   <span className="iconify" data-icon="mdi:phone" data-inline="false"></span> {item.bsnPhone} - {item.bsnAddress}
                   { userData._id && showBtnFav(item) }
                 </div>            
-              </article>
-            </div>
+              </div>
+            </article>
           )
         })}
       </div>

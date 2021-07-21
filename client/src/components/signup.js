@@ -4,7 +4,6 @@ import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 import { axiosRequest, serverAddress } from '../services/api';
-import '../css/signup.css';
 
 
 function Signup(props) {

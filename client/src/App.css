@@ -1,8 +1,90 @@
+/* Fundamental */
 @font-face { 
   font-family: Ubuntu;
-  src: url('./css/Ubuntu-L.ttf');
+  src: url('./Ubuntu-L.ttf');
 }
 
 .ubuntu {
   font-family: Ubuntu;
+}
+
+
+
+/* Card */
+.meishiImage {
+  min-height: 150px;
+  background-position: center;
+  background-size: cover;
+}
+
+
+
+/* Footer */
+footer {
+  position: relative;
+  bottom: 0;
+  background: #333;
+}
+
+
+
+/* Header */
+header {
+  background: #333;
+  color: white;
+}
+
+header a {
+color: white;
+padding: 0 12px;
+text-decoration: none;
+}
+
+header a:hover {
+color: gray;
+}
+
+header .burger {
+display: none;
+}
+
+@media (max-width:991px) {
+header .burger {
+  display: block;
+  cursor: pointer;
+  font-size: 2em;
+}
+
+header nav {
+  position: absolute;
+  right: 0;
+  top: 83px;
+  width: 40% !important;
+  background: #333;
+  padding: 0 !important;
+  display: none;
+}
+
+header nav a {
+  display: block;
+  padding: 8px;
+  text-align: center;
+}
+
+header nav a:hover {
+  background: silver;
+}
+}
+
+
+
+/* Buttons */
+
+.btn {
+  background-color: #888;
+}
+
+.btn:hover {
+  transition: all .05s ease;
+  background-color: #333;
 }

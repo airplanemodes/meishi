@@ -33,7 +33,7 @@ router.post('/', authToken, checkIfBusinessAccount, async(req,res) => {
 
 router.get('/', async(req,res) => {
     try {
-        let perpage = (req.query.perpage) ? Number(req.query.perpage) : 5;
+        let perpage = (req.query.perpage) ? Number(req.query.perpage) : 6;
         let page = (req.query.page) ? Number(req.query.page) : 0;
         let sort = (req.query.sort) ? req.query.sort : "_id";
         let reverse = (req.query.reverse == "yes") ? -1 : 1;

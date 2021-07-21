@@ -2,13 +2,15 @@ import axios from 'axios';
 
 /* Change the server address here if needed */
 export const serverAddress = "http://localhost:3500";
+/* Change the number of items on page if needed */
+export const itemsPerPage = 6;
 
 
 /* Axios GET request without token */
 export const getRequest = async(url) => {
     try {
         let resp = await axios.get(url);
-        console.log(resp);
+        //console.log(resp);
         return resp.data;
 
     } catch (error) {
