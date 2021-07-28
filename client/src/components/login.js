@@ -20,10 +20,11 @@ function Login(props) {
         localStorage.setItem('localToken', data.token); // saving token on the client-side (in the browser)
         await updateUserData(); // for a user data object
         enqueueSnackbar('Welcome to the system', {variant: 'success'}); // show success message
-        history.push("/userinfo"); // redirect to userinfo
+        history.push("/profile"); // redirect to userinfo
 
       } catch (error) {
         console.log(error);
+        enqueueSnackbar('Access denied', {variant: 'error'}); // show success message
       }
     };
 

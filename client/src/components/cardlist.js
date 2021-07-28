@@ -51,7 +51,8 @@ function Cardlist(props) {
           return (
             <article key={item._id} className="col-lg-4 p-3">
               <div className="border border-dark" style={{backgroundColor:"#222"}}>
-                <h3 className="text-white text-center p-1" style={{backgroundColor:"#333"}}>{item.bsnName}</h3>
+                <h3 className="text-white text-center p-1" style={{backgroundColor:"#444"}}>{item.bsnName}</h3>
+                {/* CSS code of getting url for a background image from the database */}
                 <div className="meishiImage" style={{backgroundImage:`url(${bg})`}}></div>
                 <div className="small mt-1 text-center" style={{backgroundColor:"#333", color:"#c7c7c7"}}>{item.bsnDescription}</div>
                 <div className="small mt-1 text-center text-white" style={{backgroundColor:"#333"}}>

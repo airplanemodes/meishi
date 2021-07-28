@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { axiosRequest, serverAddress } from '../services/api';
 import PageHeader from './common/page-header';
 
-function Userinfo(props) {
+function Profile(props) {
 
     let [userinfo, setUserinfo] = useState({}); // object inside (findOne method returns an object)
 
@@ -21,7 +21,7 @@ function Userinfo(props) {
 
     return (
         <div className="container ubuntu pt-5 w-75">
-            <PageHeader title="User info"/>
+            <PageHeader title="User information"/>
             <div><strong>Name:</strong> {userinfo.name}</div>
             <div><strong>E-mail:</strong> {userinfo.email}</div>
             <div><strong>Date created:</strong> {userinfo.newdate}</div>
@@ -29,4 +29,4 @@ function Userinfo(props) {
     );
 };
 
-export default Userinfo;
+export default Profile;

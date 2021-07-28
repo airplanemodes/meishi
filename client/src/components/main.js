@@ -28,6 +28,8 @@ function Main(props) {
     return (
         <div className="container ubuntu pt-4">
             <PageHeader title="Cards"/>
+            {/* pagination can be duplicated if needed 
+            for example, to place it at the bottom of a page */}
             <Pagination urlOfTotal="/cards/total" linkTo="/?page="/>
             <Cardlist propy={cardsArray}/>
         </div> 

@@ -1,23 +1,34 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
-import { updateUserData } from '../services/userdata';
+import { returnUserData, updateUserData } from '../services/userdata';
+
+
 
 function Header(props) {
   
   let [showMobileNav,setShowMobileNav] = useState(false);
+  let [user,setUser] = useState(null);
   const { enqueueSnackbar } = useSnackbar();
+
+
+  useEffect(() => {
+    setUser(returnUserData());
+  },[props.location]);
+
 
   // makes dropdown menu dissapear on mobiles
   const hideNavMobile = () => { 
     setShowMobileNav(false);
   };
 
+
   const logOut = async() => {
     enqueueSnackbar('You logged out from the system', {variant: 'info'});
     localStorage.removeItem('localToken');
     await updateUserData();
   };
+
 
     return (
       <header className="container-fluid ubuntu p-3">
@@ -41,8 +52,9 @@ function Header(props) {
               </React.Fragment>
               :
               <React.Fragment>
-              <Link to="/userinfo">User info</Link>
+              <Link to="/profile">Profile</Link>
               <Link to="/favorites">Favorites</Link>
+              { user?.business && <Link to="/business">Business</Link> }
               <Link onClick={logOut} to="/login">Logout</Link>
               </React.Fragment>
               }
@@ -53,5 +65,6 @@ function Header(props) {
       </header>
     );
 };
+
 
 export default Header;

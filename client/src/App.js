@@ -1,3 +1,5 @@
+/* React client-side code */
+
 import './App.css';
 
 /* Modules, Hooks and Functions */
@@ -16,9 +18,10 @@ import Page404 from './components/404';
 import Footer from './components/footer';
 import Signup from './components/signup';
 import Login from './components/login';
-import Userinfo from './components/userinfo';
 import ProtectedRoute from './components/common/protected-route';
 import Favorites from './components/favorites';
+import Profile from './components/profile';
+import Business from './components/business/business';
 
 
 
@@ -28,7 +31,7 @@ function App() {
   of user data that stored at 'user' object and for this purpose
   these hooks works already in the main 'App.js' component */
   
-  // creates state
+  // creates state with null (not exists)
   let [user,setUser] = useState(null);
 
   useEffect(() => {
@@ -50,8 +53,14 @@ function App() {
       horizontal: 'right'
     }} TransitionComponent={Grow}>
       <Router>
-        {/* For props use and rerender on url changes */}
-        <Route path="/" component={Header}/>
+
+        {/* Header gets 'Route' for re-render on url changes, 
+            it's also waiting for the 'user' state
+            for showing additional links if the user is business */}
+        { user && <Route path="/" component={Header}/> }
+
+
+        {/* This main section shows only when user state gets updated */}
         { user &&
           <main style={{ minHeight: "78vh" }}>
             <Switch>
@@ -60,13 +69,16 @@ function App() {
             <Route exact path="/login" component={Login}/>
             <Route exact path="/about" component={About}/>
             {/* All pages that need authentication are here */}
-            <ProtectedRoute path="/userinfo" comp={Userinfo}/>
+            <ProtectedRoute path="/profile" comp={Profile}/>
             <ProtectedRoute path="/favorites" comp={Favorites}/>
+            <ProtectedRoute businessRoute={true} path="/business" comp={Business}/>
             {/* 404 comes last */}
             <Route path="/" component={Page404}/>
             </Switch>
           </main>
         }
+
+
         <Footer/>
       </Router>
     </SnackbarProvider>

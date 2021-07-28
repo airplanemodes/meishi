@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, useHistory } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 import { axiosRequest, serverAddress } from '../../services/api';
+import { returnUserData } from '../../services/userdata';
 
 function ProtectedRoute(props) {
     let history = useHistory();
@@ -27,6 +28,16 @@ function ProtectedRoute(props) {
 
     const protectedValidTwo = async() => {
         let checkdata = await protectedValidOne();
+
+        if (props.businessRoute) {
+            let userdata = returnUserData();
+            if (!userdata.business) {
+                enqueueSnackbar('You should have a business account', {variant: 'info'});
+                history.push('/');
+                return;
+            }
+        }
+
         if (!checkdata.status) {
             enqueueSnackbar('You should login first!', {variant: 'warning'});
             localStorage.removeItem("localToken");

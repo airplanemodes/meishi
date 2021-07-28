@@ -1,5 +1,5 @@
-/* Node.js + Express.js + MongoDB */
-
+/* Node.js + Express.js + MongoDB
+    Server-side code */
 
 const express = require('express');
 const path = require('path');
@@ -15,7 +15,8 @@ allowAccessControl(app); // resolve block by CORS policy, should to be before ro
 routes(app); // enables routing
 
 
-/* Server */
+
+// server launch
 const server = http.createServer(app);
 let port = process.env.PORT || "3500";
 server.listen(port, () => console.log(`Listening on port ${port}...`));
