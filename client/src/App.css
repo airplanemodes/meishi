@@ -81,10 +81,12 @@ header nav a:hover {
 /* Buttons */
 
 .btn {
+  color: white;
   background-color: #888;
 }
 
 .btn:hover {
-  transition: all .05s ease;
+  color: white;
   background-color: #333;
+  transition: all .05s ease;
 }

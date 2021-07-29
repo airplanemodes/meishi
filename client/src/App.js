@@ -22,6 +22,7 @@ import ProtectedRoute from './components/common/protected-route';
 import Favorites from './components/favorites';
 import Profile from './components/profile';
 import Business from './components/business/business';
+import AddCard from './components/business/addcard';
 
 
 
@@ -72,6 +73,7 @@ function App() {
             <ProtectedRoute path="/profile" comp={Profile}/>
             <ProtectedRoute path="/favorites" comp={Favorites}/>
             <ProtectedRoute businessRoute={true} path="/business" comp={Business}/>
+            <ProtectedRoute businessRoute={true} path="/addcard" comp={AddCard}/>
             {/* 404 comes last */}
             <Route path="/" component={Page404}/>
             </Switch>

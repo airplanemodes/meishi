@@ -1,10 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PageHeader from '../common/page-header';
 
 function Business(props) {
     return (
         <div className="container ubuntu pt-4">
             <PageHeader title="Cards you created"/>
+            <Link to="/addcard" className="btn btn-sm">Add new card</Link>
             <table className="table table-striped">
                 <thead>
                     <tr>
