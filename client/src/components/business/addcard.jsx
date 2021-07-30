@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router';
 import { useSnackbar } from 'notistack';
 import PageHeader from '../common/page-header';
+import { axiosRequest, serverAddress } from '../../services/api';
 
 function AddCard(props) {
 
@@ -19,8 +20,22 @@ function AddCard(props) {
 
 
 
-    const submitForm = (formdata) => {
-        console.log(formdata);
+    const submitForm = async(formdata) => {
+        //console.log(formdata);
+        try {
+            // POST request to Node.js server that create new card
+            let url = serverAddress+"/cards/";
+            let data = await axiosRequest(url, "POST", formdata);
+            //console.log(data);
+            if (data._id) {
+                enqueueSnackbar('Card added successfully!', {variant: 'success'});
+                history.push("/profile");
+            }
+            
+        } catch (error) {
+            console.log(error);
+            enqueueSnackbar('There is a problem, try again later', {variant: 'error'});
+        }
     };
 
     
