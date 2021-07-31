@@ -26,7 +26,7 @@ exports.CardModel = mongoose.model("cards", cardSchema);
 exports.validCard = (dataBody) => {
     let joiSchema = Joi.object({
         bsnName:Joi.string().min(2).max(64).required(),
-        bsnDescription:Joi.string().min(2).max(512).required(),
+        bsnDescription:Joi.string().min(2).max(1024).required(),
         bsnAddress:Joi.string().min(2).max(256).required(),
         bsnPhone:Joi.string().min(2).max(32).required(),
         // 'allow' makes possible to send nothing or an empty string

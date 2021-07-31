@@ -14,8 +14,9 @@ function Profile(props) {
     const infoGetAndSet = async() => {
         let url = serverAddress+"/users/info/";
         let data = await axiosRequest(url, "GET"); // without a body on GET request
-        //console.log(data);
+        console.log(data);
         data.newdate = data.datecreated.substr(0, data.datecreated.indexOf("T")); // remove unwanted strings
+        data.cardsliked = data.cards.length;
         setUserinfo(data); // put data into state
     }
 
@@ -25,6 +26,7 @@ function Profile(props) {
             <div><strong>Name:</strong> {userinfo.name}</div>
             <div><strong>E-mail:</strong> {userinfo.email}</div>
             <div><strong>Date created:</strong> {userinfo.newdate}</div>
+            <div><strong>Cards liked:</strong> {userinfo.cardsliked}</div>
         </div>
     );
 };
