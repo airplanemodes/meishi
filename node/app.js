@@ -11,7 +11,7 @@ const app = express();
 
 app.use(express.json()); // translates data into json
 app.use(express.static(path.join(__dirname, 'public'))); // sets local folder
-allowAccessControl(app); // resolve block by CORS policy, should to be before routing
+allowAccessControl(app); // resolves CORS policy block, must to be done before routing
 routes(app); // enables routing
 
 

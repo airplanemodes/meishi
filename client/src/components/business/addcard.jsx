@@ -23,7 +23,7 @@ function AddCard(props) {
     const submitForm = async(formdata) => {
         //console.log(formdata);
         try {
-            // POST request to Node.js server that create new card
+            // POST request to the Node.js server that creates new card
             let url = serverAddress+"/cards/";
             let data = await axiosRequest(url, "POST", formdata);
             //console.log(data);

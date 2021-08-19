@@ -20,7 +20,7 @@ function Favorites(props) {
 
     return (
         <div className="container ubuntu pt-4">
-            <PageHeader title="My favorites"/>
+            <PageHeader title="Your favorites"/>
             {/* <Pagination/> */}
             <Cardlist propy={favs}/>
         </div> 
