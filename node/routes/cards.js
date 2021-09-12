@@ -52,8 +52,21 @@ router.get('/', async(req,res) => {
 });
 
 
+/* Getting a single card */
+router.get('/single/:cardid', async(req,res) => {
+    try {
+        let cardid = req.params.cardid;
+        let card = await CardModel.findOne({_id:cardid});
+        res.json(card)
+    } catch (error) {
+        console.log(error);
+        res.status(400).json(error);
+    }
+});
 
-/* Count total database cards collection */
+
+
+/* Count how many cards in total at the database */
 
 router.get('/total', async(req,res) => {
     try {

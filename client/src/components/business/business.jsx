@@ -24,7 +24,6 @@ function Business(props) {
     };
 
     
-
     const deleteButton = async(idprop) => {
         if (window.confirm("Are you sure?")) {
             let url = serverAddress+"/cards/"+idprop;

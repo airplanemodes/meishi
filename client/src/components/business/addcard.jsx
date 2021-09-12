@@ -41,7 +41,7 @@ function AddCard(props) {
     
 
     return (
-        <div className="container ubuntu pt-4">
+        <div className="container ubuntu pt-4 w-75">
             <PageHeader title="Adding new card"/>
             <form onSubmit={handleSubmit(submitForm)} className="row">
                 <div className="col-lg-6">

@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useHistory } from 'react-router';
+import { useHistory, Link } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 import PageHeader from '../common/page-header';
-import { axiosRequest, serverAddress } from '../../services/api';
+import { axiosRequest, getRequest, serverAddress } from '../../services/api';
 
 function EditCard(props) {
 
+    let [card,setCard] = useState({});
     let { register, handleSubmit, formState: { errors } } = useForm();
     let history = useHistory();
     const { enqueueSnackbar } = useSnackbar();
@@ -19,17 +20,28 @@ function EditCard(props) {
     let imageRef = register("bsnImageUrl", {required: false});
 
 
+    useEffect(() => {
+        doApi();
+    },[]);
+
+
+    const doApi = async() => {
+        let url = serverAddress+"/cards/single/"+props.computedMatch.params.id;
+        let data = await getRequest(url);
+        //console.log(data);
+        setCard(data);
+    };
+
 
     const submitForm = async(formdata) => {
-        //console.log(formdata);
         try {
-            // POST request to the Node.js server that creates new card
-            let url = serverAddress+"/cards/";
-            let data = await axiosRequest(url, "POST", formdata);
+            // PUT request to the API
+            let url = serverAddress+"/cards/"+props.computedMatch.params.id;
+            let data = await axiosRequest(url, "PUT", formdata);
             //console.log(data);
             if (data._id) {
-                enqueueSnackbar('Card added successfully!', {variant: 'success'});
-                history.push("/profile");
+                enqueueSnackbar('Card edited successfully!', {variant: 'info'});
+                history.push("/business");
             }
             
         } catch (error) {
@@ -41,36 +53,37 @@ function EditCard(props) {
     
 
     return (
-        <div className="container ubuntu pt-4">
-            <PageHeader title="Adding new card"/>
+        <div className="container ubuntu pt-4 w-75">
+            <PageHeader title="Editing the card"/>
             <form onSubmit={handleSubmit(submitForm)} className="row">
                 <div className="col-lg-6">
                     <label>Name:</label>
-                    <input {...nameRef} type="text" autoComplete="off" className="form-control"/>
+                    <input defaultValue={card.bsnName} {...nameRef} type="text" autoComplete="off" className="form-control"/>
                     {errors.bsnName && <span className="text-danger"><small>Name is incorrect</small></span>}
                 </div>
                 <div className="col-lg-6">
                     <label>Address:</label>
-                    <input {...addressRef} type="text" autoComplete="off" className="form-control"/>
+                    <input defaultValue={card.bsnAddress} {...addressRef} type="text" autoComplete="off" className="form-control"/>
                     {errors.bsnAddress && <span className="text-danger"><small>Address is incorrect</small></span>}
                 </div>
                 <div className="col-lg-6">
                     <label>Phone:</label>
-                    <input {...phoneRef} type="text" autoComplete="off" className="form-control"/>
+                    <input defaultValue={card.bsnPhone} {...phoneRef} type="text" autoComplete="off" className="form-control"/>
                     {errors.bsnPhone && <span className="text-danger"><small>Phone is incorrect</small></span>}
                 </div>
                 <div className="col-lg-6">
                     <label>Image:</label>
-                    <input {...imageRef} type="text" autoComplete="off" className="form-control"/>
+                    <input defaultValue={card.bsnImageUrl} {...imageRef} type="text" autoComplete="off" className="form-control"/>
                     {errors.bsnImageUrl && <span className="text-danger"><small>Image URL is incorrect</small></span>}
                 </div>
                 <div className="col-lg-12">
                     <label>Description:</label>
-                    <textarea {...descriptionRef} type="text" autoComplete="off" className="form-control" rows="4"/>
+                    <textarea defaultValue={card.bsnDescription} {...descriptionRef} type="text" autoComplete="off" className="form-control" rows="4"/>
                     {errors.bsnDescription && <span className="text-danger"><small>Description is incorrect</small></span>}
                 </div>
                     <div className="col-12 text-center">
-                        <button className="btn mt-4">Submit</button>
+                        <Link to="/business" className="btn mt-4 me-4">Back to list</Link>
+                        <button className="btn mt-4">Update card</button>
                     </div>
             </form>
         </div>
