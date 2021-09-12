@@ -49,7 +49,7 @@ function ProtectedRoute(props) {
     return (
         <Route exact path={props.path} render={() => {
             protectedValidTwo();
-            return (<props.comp/>);
+            return (<props.comp {...props} />);
         }}/>
     );
 };
