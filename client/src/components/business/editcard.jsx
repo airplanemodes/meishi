@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useHistory, Link } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
@@ -7,7 +7,6 @@ import { axiosRequest, getRequest, serverAddress } from '../../services/api';
 
 function EditCard(props) {
 
-    let [card,setCard] = useState({});
     let { register, handleSubmit, setValue, formState: { errors } } = useForm();
     let history = useHistory();
     const { enqueueSnackbar } = useSnackbar();
@@ -30,7 +29,6 @@ function EditCard(props) {
         let url = serverAddress+"/cards/single/"+props.computedMatch.params.id;
         let data = await getRequest(url);
         //console.log(data);
-        setCard(data);
 
         // Using 'setValue' here instead of 'defaultValue' at the form
         setValue("bsnName", data.bsnName);
