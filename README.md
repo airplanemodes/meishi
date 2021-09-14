@@ -21,6 +21,10 @@ Be sure these ports are free in your system.
 UI documents can be found at `./client/src/ui`.  
 Works responsively for desktops, tablets and mobile phones.
 
+## Administrator accounts
+root@admin.com - 123456  
+manhattan@project.com - 1234567
+
 ### Post scriptum
 _Written with `<3` at HackerU._  
 _Some inspiration has come from a Japanese animation._

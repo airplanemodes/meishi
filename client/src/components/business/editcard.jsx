@@ -8,7 +8,7 @@ import { axiosRequest, getRequest, serverAddress } from '../../services/api';
 function EditCard(props) {
 
     let [card,setCard] = useState({});
-    let { register, handleSubmit, formState: { errors } } = useForm();
+    let { register, handleSubmit, setValue, formState: { errors } } = useForm();
     let history = useHistory();
     const { enqueueSnackbar } = useSnackbar();
 
@@ -26,10 +26,18 @@ function EditCard(props) {
 
 
     const doApi = async() => {
+        // GET request to the API
         let url = serverAddress+"/cards/single/"+props.computedMatch.params.id;
         let data = await getRequest(url);
         //console.log(data);
         setCard(data);
+
+        // Using 'setValue' here instead of 'defaultValue' at the form
+        setValue("bsnName", data.bsnName);
+        setValue("bsnDescription", data.bsnDescription);
+        setValue("bsnAddress", data.bsnAddress);
+        setValue("bsnPhone", data.bsnPhone);
+        setValue("bsnImageUrl", data.bsnImageUrl);
     };
 
 
@@ -39,7 +47,7 @@ function EditCard(props) {
             let url = serverAddress+"/cards/"+props.computedMatch.params.id;
             let data = await axiosRequest(url, "PUT", formdata);
             //console.log(data);
-            if (data._id) {
+            if (data.n === 1) {
                 enqueueSnackbar('Card edited successfully!', {variant: 'info'});
                 history.push("/business");
             }
@@ -58,27 +66,27 @@ function EditCard(props) {
             <form onSubmit={handleSubmit(submitForm)} className="row">
                 <div className="col-lg-6">
                     <label>Name:</label>
-                    <input defaultValue={card.bsnName} {...nameRef} type="text" autoComplete="off" className="form-control"/>
+                    <input {...nameRef} type="text" autoComplete="off" className="form-control"/>
                     {errors.bsnName && <span className="text-danger"><small>Name is incorrect</small></span>}
                 </div>
                 <div className="col-lg-6">
                     <label>Address:</label>
-                    <input defaultValue={card.bsnAddress} {...addressRef} type="text" autoComplete="off" className="form-control"/>
+                    <input {...addressRef} type="text" autoComplete="off" className="form-control"/>
                     {errors.bsnAddress && <span className="text-danger"><small>Address is incorrect</small></span>}
                 </div>
                 <div className="col-lg-6">
                     <label>Phone:</label>
-                    <input defaultValue={card.bsnPhone} {...phoneRef} type="text" autoComplete="off" className="form-control"/>
+                    <input {...phoneRef} type="text" autoComplete="off" className="form-control"/>
                     {errors.bsnPhone && <span className="text-danger"><small>Phone is incorrect</small></span>}
                 </div>
                 <div className="col-lg-6">
                     <label>Image:</label>
-                    <input defaultValue={card.bsnImageUrl} {...imageRef} type="text" autoComplete="off" className="form-control"/>
+                    <input {...imageRef} type="text" autoComplete="off" className="form-control"/>
                     {errors.bsnImageUrl && <span className="text-danger"><small>Image URL is incorrect</small></span>}
                 </div>
                 <div className="col-lg-12">
                     <label>Description:</label>
-                    <textarea defaultValue={card.bsnDescription} {...descriptionRef} type="text" autoComplete="off" className="form-control" rows="4"/>
+                    <textarea {...descriptionRef} type="text" autoComplete="off" className="form-control" rows="4"/>
                     {errors.bsnDescription && <span className="text-danger"><small>Description is incorrect</small></span>}
                 </div>
                     <div className="col-12 text-center">

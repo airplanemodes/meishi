@@ -57,7 +57,7 @@ router.get('/single/:cardid', async(req,res) => {
     try {
         let cardid = req.params.cardid;
         let card = await CardModel.findOne({_id:cardid});
-        res.json(card)
+        res.json(card);
     } catch (error) {
         console.log(error);
         res.status(400).json(error);
@@ -90,7 +90,7 @@ router.get('/usercards', authToken, async(req,res) => {
         let reverse = (req.query.reverse == "yes") ? -1 : 1;
         
         let data = await CardModel.find({user_id:req.tokenData._id})
-        .limit(perpage)
+        // .limit(perpage)
         .skip(page * perpage)
         .sort({[sort]:reverse});
 

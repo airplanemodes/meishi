@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { axiosRequest, serverAddress } from '../../services/api';
 import { useSnackbar } from 'notistack';
 import PageHeader from '../common/page-header';
@@ -8,6 +8,7 @@ function Business(props) {
 
     let [cards, setCards] = useState([]);
     const { enqueueSnackbar } = useSnackbar();
+    let history = useHistory();
 
     
     useEffect(() => {
@@ -18,12 +19,17 @@ function Business(props) {
     const getUserCreatedCards = async() => {
         let url = serverAddress+"/cards/usercards/";
         let data = await axiosRequest(url, "GET");
-        console.log(data);
+        //console.log(data);
         data.reverse(); // newest to oldest
         setCards(data);
     };
 
-    
+
+
+    const editButton = async(idprop) => {
+        history.push("/editcard/"+idprop);
+    };
+
     const deleteButton = async(idprop) => {
         if (window.confirm("Are you sure?")) {
             let url = serverAddress+"/cards/"+idprop;
@@ -41,7 +47,7 @@ function Business(props) {
         <div className="container ubuntu pt-4">
             <PageHeader title="Cards you created"/>
             <br />
-            <Link to="/addcard" className="btn btn-sm">Add new card</Link>
+            <Link to="/addcard" className="btn btn-sm mb-2">Add new card</Link>
             <div className="table-responsive">
                 <table className="table table-striped">
                     <thead>
@@ -64,7 +70,9 @@ function Business(props) {
                                     <td>{item.bsnAddress}</td>
                                     <td>{item.bsnPhone}</td>
                                     <td>
-                                        <button>edit</button>
+                                        <button onClick={() => {
+                                            editButton(item._id);
+                                        }}>edit</button>
                                         <button className="ms-2" style={{background: "pink"}} onClick={() => {
                                             deleteButton(item._id);
                                         }}>del</button>
@@ -78,5 +86,7 @@ function Business(props) {
         </div>
     )
 };
+
+
 
 export default Business;
