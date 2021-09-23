@@ -1,0 +1,84 @@
+[{
+  "_id": {
+    "$oid": "60e802d50e4e6803127a321e"
+  },
+  "datecreated": {
+    "$date": "2021-07-09T07:53:52.525Z"
+  },
+  "cards": [
+    176562
+  ],
+  "name": "root",
+  "email": "root@admin.com",
+  "password": "$2b$10$sbPSR3/JhbXbH4l9OUbd1elyvvuiFMJ/B7RtGwdG8VGDySM3Y0TL2",
+  "business": true,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60e96852655f9563f0813a05"
+  },
+  "datecreated": {
+    "$date": "2021-07-09T21:53:05.021Z"
+  },
+  "cards": [],
+  "name": "root2",
+  "email": "root2@admin.com",
+  "password": "$2b$10$XpEWBbYW68Ug3gPM9uq21O17Hv81fkNKN2VfsjG0Gz6hsgVvVh7Vy",
+  "business": false,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60eaf897b4b1b866a251c0b1"
+  },
+  "datecreated": {
+    "$date": "2021-07-11T13:56:28.836Z"
+  },
+  "cards": [
+    342244,
+    708434
+  ],
+  "email": "manhattan@project.com",
+  "password": "$2b$10$hk.67UtwXxEeQE/1XRjPwOl2pNRlUX7GC25NyvJ8lHtBw.juML.Za",
+  "name": "Duke Nukem",
+  "business": true,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60eb295b0ce2917d3f1ee05a"
+  },
+  "datecreated": {
+    "$date": "2021-07-11T17:19:35.118Z"
+  },
+  "cards": [],
+  "email": "shinra@corp.com",
+  "password": "$2b$10$FmeYAb1wcagtlkLHjYCz9uEMF7bZrbnFUSrqcZHZ1Vlhe4BD.nstu",
+  "name": "Sephiroth",
+  "business": true,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60eb335c6d878c8405b956c2"
+  },
+  "datecreated": {
+    "$date": "2021-07-11T18:06:54.003Z"
+  },
+  "cards": [],
+  "email": "soldier@avalanche.com",
+  "password": "$2b$10$gJONy02fW1YO4jGTLNkdh.O2y6DLh6oxb8bTfH1xx81kefW9r6OU6",
+  "name": "Cloud Strife",
+  "business": false,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60eb5c73389031126c040dcc"
+  },
+  "datecreated": {
+    "$date": "2021-07-11T21:02:29.960Z"
+  },
+  "cards": [],
+  "email": "girl@avalanche.com",
+  "password": "$2b$10$ucTujtpy9K6GBhCttoQ/JeMFKsr/ZMkLIpSBPIhRAlp/d7kX5YKlW",
+  "name": "Tifa",
+  "business": false,
+  "__v": 0
+}]

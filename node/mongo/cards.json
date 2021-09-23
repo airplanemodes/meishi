@@ -1,0 +1,126 @@
+[{
+  "_id": {
+    "$oid": "60e8c16a4de65a611e44ecb7"
+  },
+  "bsnName": "Tnuva",
+  "bsnDescription": "Food creation and marketing company founded in 1926",
+  "bsnAddress": "Israel",
+  "bsnPhone": "None",
+  "user_id": "60e802d50e4e6803127a321e",
+  "bsnNumber": 311497,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60e9692367c50aa5d22a3967"
+  },
+  "bsnName": "Shufersal",
+  "bsnDescription": "The largest supermarket chain in Israel",
+  "bsnAddress": "Rishon LeZion",
+  "bsnPhone": "1-800-565656",
+  "user_id": "60e802d50e4e6803127a321e",
+  "bsnNumber": 768867,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60ee053ade3bf75f0d241f66"
+  },
+  "bsnName": "Airplane Modes Network",
+  "bsnDescription": "The process continues",
+  "bsnAddress": "Planet Earth, Worldwide",
+  "bsnPhone": "None",
+  "bsnImageUrl": "https://images.pexels.com/photos/2441844/pexels-photo-2441844.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260",
+  "user_id": "60e802d50e4e6803127a321e",
+  "bsnNumber": 342244,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60f6e9671965d96aa5bd5918"
+  },
+  "bsnName": "Apple",
+  "bsnDescription": "The world's most valuable company",
+  "bsnAddress": "Cupertino, California, US",
+  "bsnPhone": "(408) 974–2042",
+  "user_id": "60e802d50e4e6803127a321e",
+  "bsnNumber": 176562,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60f7eff950e22c5c385d458e"
+  },
+  "bsnName": "Cisco Systems",
+  "bsnDescription": "Networking and telecommunications equipment",
+  "bsnAddress": "San Jose, California, US",
+  "bsnPhone": "1-800-553-2447",
+  "user_id": "60e802d50e4e6803127a321e",
+  "bsnNumber": 257860,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60f7f08950e22c5c385d458f"
+  },
+  "bsnName": "GitHub",
+  "bsnDescription": "Software development and version control hosting provider",
+  "bsnAddress": "San Francisco, California, US",
+  "bsnPhone": "+1 (877) 958-8742",
+  "user_id": "60e802d50e4e6803127a321e",
+  "bsnNumber": 43519,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60f7f97aa0141a62e6bae954"
+  },
+  "bsnName": "Google",
+  "bsnDescription": "Internet-related services and products",
+  "bsnAddress": "Mountain View, California, US",
+  "bsnPhone": "(650) 253-0000",
+  "user_id": "60e802d50e4e6803127a321e",
+  "bsnNumber": 207332,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60f7f9f0a0141a62e6bae955"
+  },
+  "bsnName": "SoundCloud",
+  "bsnDescription": "Online audio distribution platform and music sharing website",
+  "bsnAddress": "Berlin, Germany",
+  "bsnPhone": "None",
+  "user_id": "60e802d50e4e6803127a321e",
+  "bsnNumber": 251444,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60f7fb24a0141a62e6bae956"
+  },
+  "bsnName": "Lichess",
+  "bsnDescription": "Free and open-source Internet chess server",
+  "bsnAddress": "lichess.org",
+  "bsnPhone": "None",
+  "bsnImageUrl": "https://images.prismic.io/lichess/5cfd2630-2a8f-4fa9-8f78-04c2d9f0e5fe_lichess-box-1024.png",
+  "user_id": "60e802d50e4e6803127a321e",
+  "bsnNumber": 708434,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6103d2093f04fc0365707849"
+  },
+  "bsnName": "Wissotzky Tea",
+  "bsnDescription": "One of the oldest tea companies in the world founded in 1849",
+  "bsnAddress": "HaHashmonaim 103, Tel Aviv, Israel",
+  "bsnPhone": "1800-399-799",
+  "bsnImageUrl": "",
+  "user_id": "60eaf897b4b1b866a251c0b1",
+  "bsnNumber": 378218,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6103fd323f04fc036570784b"
+  },
+  "bsnName": "Nvidia",
+  "bsnDescription": "The designer of graphics processing units",
+  "bsnAddress": "Santa Clara, California, US",
+  "bsnPhone": "Unknown",
+  "bsnImageUrl": "",
+  "user_id": "60eaf897b4b1b866a251c0b1",
+  "bsnNumber": 862686,
+  "__v": 0
+}]
