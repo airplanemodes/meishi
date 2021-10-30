@@ -28,7 +28,3 @@ manhattan@project.com - 1234567
 ### Post scriptum
 _Written with `<3` at HackerU._  
 _Some inspiration has come from a Japanese animation._
-
-
-
-**© 2021 Airplane Modes Network**
