@@ -4,7 +4,8 @@ import PageHeader from './common/page-header';
 
 function Profile(props) {
 
-    let [userinfo, setUserinfo] = useState({}); // object inside (findOne method returns an object)
+    // object inside (findOne method returns an object)
+    let [userinfo, setUserinfo] = useState({});
 
     useEffect(() => {
         infoGetAndSet();
@@ -13,11 +14,16 @@ function Profile(props) {
 
     const infoGetAndSet = async() => {
         let url = serverAddress+"/users/info/";
-        let data = await axiosRequest(url, "GET"); // without a body on GET request
-        //console.log(data);
-        data.newdate = data.datecreated.substr(0, data.datecreated.indexOf("T")); // remove unwanted strings
+
+        // without a body on GET request
+        let data = await axiosRequest(url, "GET");
+
+        // remove unwanted strings
+        data.newdate = data.datecreated.substr(0, data.datecreated.indexOf("T"));
         data.cardsliked = data.cards.length;
-        setUserinfo(data); // put data into state
+
+        // put data into state
+        setUserinfo(data);
     }
 
     return (
@@ -29,6 +35,6 @@ function Profile(props) {
             <div><strong>Cards liked:</strong> {userinfo.cardsliked}</div>
         </div>
     );
-};
+}
 
 export default Profile;

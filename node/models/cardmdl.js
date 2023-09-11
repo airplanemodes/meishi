@@ -3,7 +3,6 @@ const Joi = require('joi');
 const {random} = require('lodash');
 
 
-
 /* Card database schema */
 
 const cardSchema = new mongoose.Schema({
@@ -19,8 +18,6 @@ const cardSchema = new mongoose.Schema({
 exports.CardModel = mongoose.model("cards", cardSchema);
 
 
-
-
 /* Card validation */
 
 exports.validCard = (dataBody) => {
@@ -34,9 +31,7 @@ exports.validCard = (dataBody) => {
     });
 
     return joiSchema.validate(dataBody);
-};
-
-
+}
 
 
 /* Generating unique number */
@@ -46,8 +41,6 @@ exports.genBsnNumber = async(CardModel) => {
         let randomNumber = random(1, 999999);
         let card = await CardModel.findOne({bsnNumber:randomNumber});
 
-        if  (!card) {
-            return randomNumber;
-        };
-    };
-};
+        if (!card) return randomNumber;
+    }
+}

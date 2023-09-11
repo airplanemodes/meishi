@@ -7,27 +7,27 @@ import { returnUserData, updateUserData } from '../services/userdata';
 
 function Header(props) {
   
-  let [showMobileNav,setShowMobileNav] = useState(false);
-  let [user,setUser] = useState(null);
+  let [showMobileNav, setShowMobileNav] = useState(false);
+  let [user, setUser] = useState(null);
   const { enqueueSnackbar } = useSnackbar();
 
 
   useEffect(() => {
     setUser(returnUserData());
-  },[props.location]);
+  }, [props.location]);
 
 
-  // makes dropdown menu dissapear on mobiles
+  // makes dropdown menu to dissapear on mobile phone displays
   const hideNavMobile = () => { 
     setShowMobileNav(false);
-  };
+  }
 
 
   const logOut = async() => {
     enqueueSnackbar('You logged out from the system', {variant: 'info'});
     localStorage.removeItem('localToken');
     await updateUserData();
-  };
+  }
 
 
     return (
@@ -64,7 +64,7 @@ function Header(props) {
         </div>
       </header>
     );
-};
+}
 
 
 export default Header;

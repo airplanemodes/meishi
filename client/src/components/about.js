@@ -10,6 +10,6 @@ function About(props) {
             <p>A business is an idea, a vision, combined with a purposeful work, that realizes in a given environment. It may reflect someones wish to change something, or it can be result of a group reflection.</p>
         </div>
     );
-};
+}
 
 export default About;

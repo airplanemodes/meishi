@@ -11,7 +11,6 @@ function EditCard(props) {
     let history = useHistory();
     const { enqueueSnackbar } = useSnackbar();
 
-
     let nameRef = register("bsnName", {required: true, minLength: 2});
     let descriptionRef = register("bsnDescription", {required: true, minLength: 2});
     let addressRef = register("bsnAddress", {required: true, minLength: 2});
@@ -21,42 +20,39 @@ function EditCard(props) {
 
     useEffect(() => {
         doApi();
-    },[]);
-
+    }, []);
 
     const doApi = async() => {
         // GET request to the API
         let url = serverAddress+"/cards/single/"+props.computedMatch.params.id;
         let data = await getRequest(url);
-        //console.log(data);
+        // console.log(data);
 
-        // Using 'setValue' here instead of 'defaultValue' at the form
+        // using 'setValue' here instead of 'defaultValue' at the form
         setValue("bsnName", data.bsnName);
         setValue("bsnDescription", data.bsnDescription);
         setValue("bsnAddress", data.bsnAddress);
         setValue("bsnPhone", data.bsnPhone);
         setValue("bsnImageUrl", data.bsnImageUrl);
-    };
-
+    }
 
     const submitForm = async(formdata) => {
         try {
             // PUT request to the API
             let url = serverAddress+"/cards/"+props.computedMatch.params.id;
             let data = await axiosRequest(url, "PUT", formdata);
-            //console.log(data);
+            // console.log(data);
             if (data.n === 1) {
                 enqueueSnackbar('Card edited successfully!', {variant: 'info'});
                 history.push("/business");
-            }
-            
-        } catch (error) {
+            }    
+        }
+        
+        catch (error) {
             console.log(error);
             enqueueSnackbar('There is a problem, try again later', {variant: 'error'});
         }
-    };
-
-    
+    }
 
     return (
         <div className="container ubuntu pt-4 w-75">
@@ -94,6 +90,6 @@ function EditCard(props) {
             </form>
         </div>
     )
-};
+}
 
 export default EditCard;

@@ -11,34 +11,30 @@ function AddCard(props) {
     let history = useHistory();
     const { enqueueSnackbar } = useSnackbar();
 
-
     let nameRef = register("bsnName", {required: true, minLength: 2});
     let descriptionRef = register("bsnDescription", {required: true, minLength: 2});
     let addressRef = register("bsnAddress", {required: true, minLength: 2});
     let phoneRef = register("bsnPhone", {required: true, minLength: 2});
     let imageRef = register("bsnImageUrl", {required: false});
 
-
-
     const submitForm = async(formdata) => {
-        //console.log(formdata);
+        // console.log(formdata);
         try {
-            // POST request to the Node.js server that creates new card
+            // POST request to the Node.js server that creates a new card
             let url = serverAddress+"/cards/";
             let data = await axiosRequest(url, "POST", formdata);
-            //console.log(data);
+            // console.log(data);
             if (data._id) {
                 enqueueSnackbar('Card added successfully!', {variant: 'success'});
                 history.push("/profile");
             }
-            
-        } catch (error) {
+        }
+        
+        catch (error) {
             console.log(error);
             enqueueSnackbar('There is a problem, try again later', {variant: 'error'});
         }
-    };
-
-    
+    }
 
     return (
         <div className="container ubuntu pt-4 w-75">
@@ -75,6 +71,6 @@ function AddCard(props) {
             </form>
         </div>
     )
-};
+}
 
 export default AddCard;

@@ -12,7 +12,7 @@ function Cardlist(props) {
 
     useEffect(() => {
         setUserData(returnUserData());
-    },[]);
+    }, []);
 
 
     const showBtnFav = (item) => {
@@ -22,7 +22,8 @@ function Cardlist(props) {
             let data = await addFavoriteCard(item.bsnNumber);
             if (data.n === 1) {
               enqueueSnackbar('Added to favorites!', {variant: 'success'});
-              // By default, when the component’s state or props change, the component will re-render.
+              // by default, when the component’s state or props changes,
+              // the component will re-render.
               forceUpdate(update + 1);
             }
           }}><i className="fa fa-plus" aria-hidden="true"></i>
@@ -40,7 +41,7 @@ function Cardlist(props) {
           </button>
         )
       }
-    };
+    }
 
 
     return (
@@ -65,6 +66,6 @@ function Cardlist(props) {
         })}
       </div>
     );
-};
+}
 
 export default Cardlist;

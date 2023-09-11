@@ -9,26 +9,23 @@ function Business(props) {
     let [cards, setCards] = useState([]);
     const { enqueueSnackbar } = useSnackbar();
     let history = useHistory();
-
     
     useEffect(() => {
         getUserCreatedCards();
-    },[props.location]);
-
+    }, [props.location]);
 
     const getUserCreatedCards = async() => {
         let url = serverAddress+"/cards/usercards/";
         let data = await axiosRequest(url, "GET");
-        //console.log(data);
-        data.reverse(); // newest to oldest
+        // console.log(data);
+        // from newer to older
+        data.reverse();
         setCards(data);
-    };
-
-
+    }
 
     const editButton = async(idprop) => {
         history.push("/editcard/"+idprop);
-    };
+    }
 
     const deleteButton = async(idprop) => {
         if (window.confirm("Are you sure?")) {
@@ -39,9 +36,7 @@ function Business(props) {
                 enqueueSnackbar('Card deleted successfully!', {variant: 'info'});
             }
         }
-    };
-
-
+    }
 
     return (
         <div className="container ubuntu pt-4">
@@ -85,8 +80,6 @@ function Business(props) {
             </div>
         </div>
     )
-};
-
-
+}
 
 export default Business;

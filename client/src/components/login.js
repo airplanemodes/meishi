@@ -12,43 +12,50 @@ function Login(props) {
 
     /* Submit with Axios request to the server-side */
     const onSubForm = async(formData) => { 
-      //console.log(formData);
+      // console.log(formData);
       try {
         let url = serverAddress+"/users/login/";
-        let data = await axiosRequest(url, "POST", formData); // Axios request
-        //console.log(data); // token is here
-        localStorage.setItem('localToken', data.token); // saving token on the client-side (in the browser)
-        await updateUserData(); // for a user data object
-        enqueueSnackbar('Welcome to the system', {variant: 'success'}); // show success message
-        history.push("/profile"); // redirect to userinfo
 
-      } catch (error) {
-        console.log(error);
-        enqueueSnackbar('Access denied', {variant: 'error'}); // show success message
+        // axios request
+        let data = await axiosRequest(url, "POST", formData);
+
+        // token is here
+        // console.log(data);
+
+        // saving token on the client-side (in the browser)
+        localStorage.setItem('localToken', data.token);
+
+        // for a user data object
+        await updateUserData();
+
+        // show success message
+        enqueueSnackbar('Welcome to the system', {variant: 'success'});
+        
+        // redirect to userinfo
+        history.push("/profile");
       }
-    };
+      
+      catch (error) {
+        console.log(error);
+        enqueueSnackbar('Access denied', {variant: 'error'}); // show error message
+      }
+    }
 
 
-  
     /* React-Hook-Form settings */
-    let {register, handleSubmit, formState: {errors} } = useForm();
-    
+    let { register, handleSubmit, formState: {errors} } = useForm();
     let emailRef = register("email", {
         required: true,
         pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
     });
-
     let passwordRef = register("password", {required: true});
 
 
-
-    /* useHistory hook assigning to the variable */
+    // useHistory hook assigning to the variable
     let history = useHistory();
 
-
-    /* notistack */
+    // notistack
     const { enqueueSnackbar } = useSnackbar();
-
 
 
     return (
@@ -71,6 +78,6 @@ function Login(props) {
             </form>
         </div> 
     );
-};
+}
 
 export default Login;

@@ -8,14 +8,14 @@ function Pagination(props) {
 
     useEffect(() => {
         getTotalEntries();
-    },[]); // eslint-disable-line
+    }, []); // eslint-disable-line
 
     const getTotalEntries = async() => {
         let url = serverAddress+props.urlOfTotal;
         let data = await getRequest(url);
-        //console.log(data.count);
+        // console.log(data.count);
         setCountPage(Math.ceil(data.count / itemsPerPage));
-    };
+    }
 
     return (
         <div>
@@ -28,6 +28,6 @@ function Pagination(props) {
             })}
         </div>
     )
-};
+}
 
 export default Pagination;

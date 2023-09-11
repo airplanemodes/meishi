@@ -1,92 +1,78 @@
-/* Fundamental */
 @font-face { 
-  font-family: Ubuntu;
-  src: url('./Ubuntu-L.ttf');
+    font-family: Ubuntu;
+    src: url('./Ubuntu-L.ttf');
 }
 
 .ubuntu {
-  font-family: Ubuntu;
+    font-family: Ubuntu;
 }
 
-
-
-/* Card image */
 .meishiImage {
-  min-height: 150px;
-  background-position: center;
-  background-size: cover;
+    min-height: 150px;
+    background-position: center;
+    background-size: cover;
 }
 
-
-
-/* Footer */
 footer {
-  position: relative;
-  bottom: 0;
-  background: #252525;
+    position: relative;
+    bottom: 0;
+    background: #252525;
 }
 
-
-
-/* Header */
 header {
-  background: #252525;
-  color: white;
+    background: #252525;
+    color: white;
 }
 
 header a {
-color: white;
-padding: 0 12px;
-text-decoration: none;
+    color: white;
+    padding: 0 12px;
+    text-decoration: none;
 }
 
 header a:hover {
-color: gray;
+    color: gray;
 }
 
 header .burger {
-display: none;
+    display: none;
 }
 
 @media (max-width:991px) {
-header .burger {
-  display: block;
-  cursor: pointer;
-  font-size: 2em;
+    header .burger {
+        display: block;
+        cursor: pointer;
+        font-size: 2em;
+    }
+
+    header nav {
+        position: absolute;
+        right: 0;
+        top: 83px;
+        width: 40% !important;
+        background: #333;
+        padding: 0 !important;
+        display: none;
+    }
+
+    header nav a {
+        display: block;
+        padding: 8px;
+        text-align: center;
+    }
+
+    header nav a:hover {
+        background: silver;
+    }
 }
-
-header nav {
-  position: absolute;
-  right: 0;
-  top: 83px;
-  width: 40% !important;
-  background: #333;
-  padding: 0 !important;
-  display: none;
-}
-
-header nav a {
-  display: block;
-  padding: 8px;
-  text-align: center;
-}
-
-header nav a:hover {
-  background: silver;
-}
-}
-
-
-
-/* Buttons */
 
 .btn {
-  color: white;
-  background-color: #888;
+    color: white;
+    background-color: #888;
 }
 
 .btn:hover {
-  color: white;
-  background-color: #333;
-  transition: all .05s ease;
+    color: white;
+    background-color: #333;
+    transition: all .05s ease;
 }

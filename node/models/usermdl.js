@@ -4,7 +4,6 @@ const jwt = require('jsonwebtoken');
 const { authconfig } = require('../middleware/authcfg');
 
 
-
 /* User database schema */
 
 const userSchema = new mongoose.Schema({
@@ -22,9 +21,6 @@ const userSchema = new mongoose.Schema({
 exports.UserModel = mongoose.model('users', userSchema);
 
 
-
-
-
 /* Validations */
 
 exports.validUser = (dataBody) => {
@@ -36,7 +32,7 @@ exports.validUser = (dataBody) => {
     });
 
     return joiSchema.validate(dataBody);
-};
+}
 
 
 exports.validLogin = (dataBody) => {
@@ -46,7 +42,7 @@ exports.validLogin = (dataBody) => {
     });
 
     return joiSchema.validate(dataBody);
-};
+}
 
 
 exports.validFavorites = (dataBody) => {
@@ -55,8 +51,7 @@ exports.validFavorites = (dataBody) => {
     });
 
     return joiSchema.validate(dataBody);
-};
-
+}
 
 
 /* Token */
@@ -64,4 +59,4 @@ exports.validFavorites = (dataBody) => {
 exports.passToken = (userid) => {
     let token = jwt.sign({_id:userid}, authconfig.jwtSecret, {expiresIn:"10h"});
     return token;
-};
+}

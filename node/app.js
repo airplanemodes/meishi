@@ -1,5 +1,5 @@
 /* Node.js + Express.js + MongoDB
-    Server-side code */
+    Meishi server-side code */
 
 const express = require('express');
 const path = require('path');
@@ -9,12 +9,17 @@ const mongodb = require('./mongo/connect');
 const {routes, allowAccessControl} = require('./routes/config');
 const app = express();
 
-app.use(express.json()); // translates data into json
-app.use(express.static(path.join(__dirname, 'public'))); // sets local folder
-allowAccessControl(app); // resolves CORS policy block, must to be done before routing
-routes(app); // enables routing
+// translates data into json
+app.use(express.json());
 
+// sets local folder
+app.use(express.static(path.join(__dirname, 'public')));
 
+// resolves CORS policy, must be done before routing
+allowAccessControl(app);
+
+// enables routing
+routes(app);
 
 // server launch
 const server = http.createServer(app);

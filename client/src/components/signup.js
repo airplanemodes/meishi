@@ -26,32 +26,29 @@ function Signup(props) {
     let nameRef = register("name", {required: true, minLength: 2});
     let checkRef = register("business", {required: false});
 
-
-    /* useHistory hook assigning to the variable */
     let history = useHistory();
 
-
-    /* notistack */
     const { enqueueSnackbar } = useSnackbar();
 
 
-    /* Submit with Axios request to the server-side */
     const onSubForm = async(formData) => { 
-      //console.log(formData);
+      // console.log(formData);
       try {
         let url = serverAddress+"/users/";
         let data = await axiosRequest(url, "POST", formData);
 
         if (data._id) {
           enqueueSnackbar('Success!', {variant: 'success'});
-          history.push("/login");  // relocate the user to login page
+
+          // relocate the user to login page
+          history.push("/login");
         }
-        
-      } catch (error) {
+      }
+      
+      catch (error) {
         console.log(error.response.data);
       }
-    };    
-
+    }
 
 
     return (
@@ -88,6 +85,6 @@ function Signup(props) {
             </form>
         </div> 
     );
-};
+}
 
 export default Signup;

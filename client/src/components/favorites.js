@@ -10,13 +10,13 @@ function Favorites(props) {
 
     useEffect(() => {
         favGetAndSet();
-    },[]);
+    }, []);
     
     const favGetAndSet = async() => {
         let url = serverAddress+"/users/favcards/";
         let data = await axiosRequest(url, "GET");
         setFavs(data);
-    };
+    }
 
     return (
         <div className="container ubuntu pt-4">
@@ -25,6 +25,6 @@ function Favorites(props) {
             <Cardlist propy={favs}/>
         </div> 
     )
-};
+}
 
 export default Favorites;

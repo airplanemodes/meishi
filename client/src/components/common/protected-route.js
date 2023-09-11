@@ -10,21 +10,19 @@ function ProtectedRoute(props) {
 
     const protectedValidOne = async() => {
         // Dot notation
-        if (!localStorage.localToken) {
-            return {error:"There is no token"};
-        }
+        if (!localStorage.localToken) return {error: "There is no token"};
     
         try {
             let url = serverAddress+"/users/token/";
             let logindata = await axiosRequest(url, "GET");
             return logindata;
-            
-        } catch (error) {
+        }
+        
+        catch (error) {
             console.log(error);
             throw error;
         }
-    };
-
+    }
 
     const protectedValidTwo = async() => {
         let checkdata = await protectedValidOne();
@@ -43,8 +41,7 @@ function ProtectedRoute(props) {
             localStorage.removeItem("localToken");
             history.push('/login');
         }
-    };
-
+    }
 
     return (
         <Route exact path={props.path} render={() => {
@@ -52,6 +49,6 @@ function ProtectedRoute(props) {
             return (<props.comp {...props} />);
         }}/>
     );
-};
+}
 
 export default ProtectedRoute;
